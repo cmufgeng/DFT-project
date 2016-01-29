@@ -1,0 +1,12 @@
+from ase.io import write
+from ase.lattice.cubic import FaceCenterdCubic
+
+atoms = FaceCenteredCubic('Ag')
+write('imagines/Ag-fcc.png',atoms.show_unit_cell=2)
+print atoms
+
+atoms = FaceCenteredCubic('Ag', direction=[[0,1,1],
+                                            [1,0,1],
+                                            [1,1,0]])
+write('./Ag-fcc-primitive,png', atoms.show_unit_cell=2)
+print atoms
