@@ -1,0 +1,31 @@
+# relax structure
+
+
+
+
+# get position from strucutre
+with jasp('XXXX') as calc:
+    atoms = calc.get_atoms()
+    forces = atoms.get_forces()
+    print forces.max()
+    print atoms.get_potential_energy()
+
+# fix position and find the barrier
+
+# for example
+atoms = molecule('NH3')
+constraint = FixAtoms(mask=[atom.symbol == 'N' for atom in atoms])
+atoms.set_constriant(constraint)
+
+Nposition = atoms.postions[0]
+
+atoms2 = atoms.copy()
+pos2 = atoms2.positions
+for i, atom in enumerate(atoms2):
+      if atom.symbol == 'H':
+         pos2[i] *= np.array([1,1,-1])# reflect to another side
+atoms2.positions = pos2
+
+# after the first and final position is set, we need to calculate their energy and find whether they are ame
+
+
